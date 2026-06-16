@@ -20,9 +20,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="#999"
         android:padding="12dp"
         android:background="#fff"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/setupBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="去设置"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/hintText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="#999"
+        android:padding="8dp"
         android:layout_marginBottom="12dp" />
 
     <LinearLayout
@@ -42,14 +59,6 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/setupBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="打开NFC设置"
-            android:textSize="14sp"
-            android:visibility="gone" />
-
-        <Button
             android:id="@+id/clearBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,14 +74,5 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="提示：在系统 NFC 设置中将「默认付款应用」设为本应用，然后手机靠近读卡器即可自动记录"
-        android:textSize="13sp"
-        android:textColor="#999"
-        android:padding="12dp"
-        android:layout_marginTop="8dp" />
 
 </LinearLayout>
