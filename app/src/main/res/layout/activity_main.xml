@@ -1,111 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#f5f3f0">
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NFC 打卡记录"
-        android:textSize="24sp"
-        android:textColor="#333"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp" />
-
-    <TextView
-        android:id="@+id/statusText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:padding="12dp"
-        android:background="#fff"
-        android:textColor="#4a90d9"
-        android:layout_marginBottom="12dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="方式一（推荐）：无障碍服务自动检测"
-        android:textSize="15sp"
-        android:textColor="#333"
-        android:textStyle="bold"
-        android:layout_marginBottom="4dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="监听系统 NFC 事件，刷卡时自动记录"
-        android:textSize="13sp"
-        android:textColor="#999"
-        android:layout_marginBottom="8dp" />
-
-    <Button
-        android:id="@+id/method1Btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="打开无障碍设置"
-        android:textSize="15sp"
-        android:layout_marginBottom="16dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="方式二：设为默认 NFC 服务"
-        android:textSize="15sp"
-        android:textColor="#333"
-        android:textStyle="bold"
-        android:layout_marginBottom="4dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="在 NFC 付款设置中选「NFC考勤打卡」"
-        android:textSize="13sp"
-        android:textColor="#999"
-        android:layout_marginBottom="8dp" />
-
-    <Button
-        android:id="@+id/method2Btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="打开 NFC 付款设置"
-        android:textSize="15sp"
-        android:layout_marginBottom="16dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="12dp">
-
-        <TextView
-            android:id="@+id/countText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="刷卡次数: 0"
-            android:textSize="18sp"
-            android:textColor="#4a90d9"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/clearBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="清空"
-            android:textSize="14sp"
-            android:textColor="#d32f2f"
-            style="@style/Widget.Material3.Button.TextButton" />
-
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recordList"
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        app:menu="@menu/bottom_nav"
+        app:labelVisibilityMode="labeled" />
 
 </LinearLayout>

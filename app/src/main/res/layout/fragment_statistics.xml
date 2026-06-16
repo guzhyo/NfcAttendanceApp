@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#f5f3f0">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="打卡统计"
+        android:textSize="24sp"
+        android:textColor="#333"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="#fff"
+            android:padding="16dp"
+            android:layout_marginEnd="4dp">
+            <TextView android:text="总计" android:textSize="12sp" android:textColor="#999" />
+            <TextView android:id="@+id/totalText" android:text="0" android:textSize="28sp" android:textColor="#4a90d9" android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="#fff"
+            android:padding="16dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp">
+            <TextView android:text="今日" android:textSize="12sp" android:textColor="#999" />
+            <TextView android:id="@+id/todayText" android:text="0" android:textSize="28sp" android:textColor="#4a90d9" android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="#fff"
+            android:padding="16dp"
+            android:layout_marginStart="4dp">
+            <TextView android:text="本月" android:textSize="12sp" android:textColor="#999" />
+            <TextView android:id="@+id/monthText" android:text="0" android:textSize="28sp" android:textColor="#4a90d9" android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="打卡方式分布"
+        android:textSize="18sp"
+        android:textColor="#333"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="#fff"
+            android:padding="16dp"
+            android:layout_marginEnd="4dp">
+            <TextView android:text="手动打卡" android:textSize="13sp" android:textColor="#999" />
+            <TextView android:id="@+id/manualText" android:text="0" android:textSize="24sp" android:textColor="#5fa5f0" android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="#fff"
+            android:padding="16dp"
+            android:layout_marginStart="4dp">
+            <TextView android:text="NFC刷卡" android:textSize="13sp" android:textColor="#999" />
+            <TextView android:id="@+id/nfcText" android:text="0" android:textSize="24sp" android:textColor="#8a7af0" android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="#fff"
+        android:padding="20dp">
+        <TextView android:text="本月日均打卡" android:textSize="13sp" android:textColor="#999" />
+        <TextView android:id="@+id/avgText" android:text="0" android:textSize="36sp" android:textColor="#4a90d9" android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>
