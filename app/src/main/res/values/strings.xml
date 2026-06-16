@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">NFC考勤打卡</string>
+    <string name="accessibility_desc">监控 NFC 刷卡事件，自动记录打卡。仅用于检测系统 NFC 通知，不收集任何个人信息。</string>
 </resources>
