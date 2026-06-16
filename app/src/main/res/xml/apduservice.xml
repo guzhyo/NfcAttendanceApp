@@ -4,7 +4,7 @@
     android:requireDeviceUnlock="false">
 
     <!-- 通配 AID：匹配所有 HCE 请求 -->
-    <aid-group android:category="other"
+    <aid-group android:category="payment"
         android:description="@string/app_name">
         <aid-filter android:name="*" />
     </aid-group>
