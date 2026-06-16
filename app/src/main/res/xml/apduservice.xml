@@ -3,15 +3,13 @@
     android:description="@string/app_name"
     android:requireDeviceUnlock="false">
 
-    <!-- 支付类别：确保在付款设置中可见 -->
     <aid-group android:category="payment"
-        android:description="NFC考勤">
+        android:description="@string/aid_payment">
         <aid-filter android:name="A0000000041010" />
     </aid-group>
 
-    <!-- 其他类别：门禁卡/通用 -->
     <aid-group android:category="other"
-        android:description="门禁卡模拟">
+        android:description="@string/aid_other">
         <aid-filter android:name="F0010203040506" />
         <aid-filter android:name="D2760000850100" />
         <aid-filter android:name="0000000000000000" />
