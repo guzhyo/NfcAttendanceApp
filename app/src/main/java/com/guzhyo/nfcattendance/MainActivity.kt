@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.nfc.NfcAdapter
-import android.nfc.cardemulation.CardEmulation
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
@@ -24,10 +23,7 @@ class MainActivity : AppCompatActivity() {
     private val recordReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val ts = intent?.getStringExtra("timestamp") ?: return
-            refreshRecords()
-            if (!isFinishing) {
-                Toast.makeText(this@MainActivity, "刷卡成功 $ts", Toast.LENGTH_SHORT).show()
-            }
+            runOnUiThread { refreshRecords() }
         }
     }
 
@@ -36,15 +32,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        refreshRecords()
         adapter = RecordAdapter(records)
         binding.recordList.layoutManager = LinearLayoutManager(this)
         binding.recordList.adapter = adapter
-
-        checkNfcState()
+        refreshRecords()
+        updateNfcStatus()
 
         binding.setupBtn.setOnClickListener {
-            // 直接跳到 NFC 付款设置
             try {
                 startActivity(Intent(Settings.ACTION_NFC_PAYMENT_SETTINGS))
             } catch (_: Exception) {
@@ -57,48 +51,42 @@ class MainActivity : AppCompatActivity() {
             getSharedPreferences("records", MODE_PRIVATE).edit().putStringSet("list", emptySet()).apply()
             adapter.notifyDataSetChanged()
             binding.countText.text = "刷卡次数: 0"
-            Toast.makeText(this, "已清空", Toast.LENGTH_SHORT).show()
         }
 
-        registerReceiver(recordReceiver,
-            IntentFilter("com.guzhyo.nfcattendance.RECORD"),
-            Context.RECEIVER_NOT_EXPORTED)
+        try {
+            registerReceiver(recordReceiver,
+                IntentFilter("com.guzhyo.nfcattendance.RECORD"),
+                Context.RECEIVER_NOT_EXPORTED)
+        } catch (_: Exception) {}
     }
 
     override fun onResume() {
         super.onResume()
-        checkNfcState()
+        updateNfcStatus()
     }
 
-    private fun checkNfcState() {
-        val adapter = NfcAdapter.getDefaultAdapter(this)
-        if (adapter == null) {
-            binding.statusText.text = "设备不支持 NFC"
-            return
-        }
-        if (!adapter.isEnabled) {
-            binding.statusText.text = "NFC 未开启"
-            binding.setupBtn.visibility = android.view.View.VISIBLE
-            binding.setupBtn.text = "打开 NFC 设置"
-            binding.hintText.text = ""
-            return
-        }
-
-        val cardEmulation = CardEmulation.getInstance(adapter)
-        val isDefault = cardEmulation.isDefaultServiceForCategory(
-            android.content.ComponentName(this, HceService::class.java),
-            CardEmulation.CATEGORY_OTHER
-        )
-
-        if (isDefault) {
-            binding.statusText.text = "已就绪，靠近读卡器自动记录"
-            binding.setupBtn.visibility = android.view.View.GONE
-            binding.hintText.text = ""
-        } else {
-            binding.statusText.text = "需要设为默认 NFC 服务"
-            binding.setupBtn.visibility = android.view.View.VISIBLE
-            binding.setupBtn.text = "去设置默认 NFC 服务"
-            binding.hintText.text = "在付款设置页面 →「其他」→ 选「NFC考勤打卡」"
+    private fun updateNfcStatus() {
+        try {
+            val adapter = NfcAdapter.getDefaultAdapter(this)
+            when {
+                adapter == null -> {
+                    binding.statusText.text = "设备不支持 NFC"
+                    binding.setupBtn.visibility = android.view.View.GONE
+                }
+                !adapter.isEnabled -> {
+                    binding.statusText.text = "NFC 未开启"
+                    binding.setupBtn.visibility = android.view.View.VISIBLE
+                    binding.setupBtn.text = "打开 NFC 设置"
+                }
+                else -> {
+                    binding.statusText.text = "NFC 已开启 · 点击下方按钮设置默认服务"
+                    binding.setupBtn.visibility = android.view.View.VISIBLE
+                    binding.setupBtn.text = "设为默认 NFC 服务"
+                    binding.hintText.text = "在设置页面 → 点右上角或「其他」→ 选「NFC考勤打卡」"
+                }
+            }
+        } catch (e: Exception) {
+            binding.statusText.text = "错误: ${e.message}"
         }
     }
 
@@ -107,7 +95,7 @@ class MainActivity : AppCompatActivity() {
         val saved = prefs.getStringSet("list", emptySet()) ?: emptySet()
         records.clear()
         records.addAll(saved.sortedDescending())
-        adapter?.notifyDataSetChanged()
+        adapter.notifyDataSetChanged()
         binding.countText.text = "刷卡次数: ${records.size}"
     }
 
