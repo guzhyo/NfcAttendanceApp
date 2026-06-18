@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#f5f3f0">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NFC 监控设置"
+        android:textSize="22sp"
+        android:textColor="#333"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#fff"
+        android:padding="16dp"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="方式一：无障碍服务（推荐）"
+            android:textSize="16sp"
+            android:textColor="#333"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="监听系统 NFC 通知自动记录，无需改默认付款应用。"
+            android:textSize="14sp"
+            android:textColor="#666"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/accessibilityBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开无障碍设置" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#fff"
+        android:padding="16dp"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="方式二：HCE 服务"
+            android:textSize="16sp"
+            android:textColor="#333"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="设为默认 NFC 服务，靠近读卡器时自动记录。在设置页面找到「其他」或「Other」分类选择本 App。"
+            android:textSize="14sp"
+            android:textColor="#666"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/nfcPaymentBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开 NFC 付款设置"
+            android:textColor="#8a7af0"
+            style="@style/Widget.Material3.Button.TextButton" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#fff"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开启 NFC"
+            android:textSize="16sp"
+            android:textColor="#333"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="确保手机 NFC 功能已开启。"
+            android:textSize="14sp"
+            android:textColor="#666"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/nfcSettingsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开 NFC 设置"
+            style="@style/Widget.Material3.Button.OutlinedButton" />
+    </LinearLayout>
+
+</LinearLayout>
